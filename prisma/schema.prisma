@@ -1,0 +1,17 @@
+generator client {
+   provider = "prisma-client-js"
+}
+
+datasource db {
+   provider = "mongodb"
+   url      = env("DATABASE_URL")
+}
+
+model URLShortener {
+   id         String   @id @default(auto()) @map("_id") @db.ObjectId
+   url        String
+   hash       String
+   created_at DateTime @default(now())
+
+   @@map("url_shortener") // opcional: define o nome da coleção como "url_shortener"
+}
